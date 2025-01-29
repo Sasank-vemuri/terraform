@@ -1,5 +1,10 @@
 pipeline {
   agent any
+
+  environment {
+     TF_VAR_prefix = 'An' 
+   }
+
   stages {
     stage('Clone') {
       steps {
@@ -13,7 +18,7 @@ pipeline {
     }
     stage('Execute Terraform Apply') {
       steps {
-        sh 'terraform apply -auto-approve'
+        sh 'terraform apply =var "prefix=$(TF_VAR_prefix)" -var "prefix=A" -auto-approve'
       }
     }
   }
