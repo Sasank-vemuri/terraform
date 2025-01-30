@@ -18,7 +18,8 @@ pipeline {
     }
     stage('Execute Terraform Apply') {
       steps {
-        sh 'terraform apply =var "prefix=$(TF_VAR_prefix)" -var "prefix=A" -auto-approve'
+          terraform apply -var "prefix=A" -auto-approve
+
       }
     }
   }
