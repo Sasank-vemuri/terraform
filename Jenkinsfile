@@ -19,7 +19,11 @@ pipeline {
     stage('Execute Terraform Apply') {
       steps {
         // Fixing the shell variable substitution
-        sh 'terraform apply -var "prefix=$TF_VAR_prefix" -auto-approve'
+        sh '''
+  export TF_VAR_prefix=$TF_VAR_prefix
+  terraform apply -var "prefix=$TF_VAR_prefix" -auto-approve
+'''
+
       }
     }
   }
