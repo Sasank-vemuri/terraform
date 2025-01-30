@@ -18,7 +18,8 @@ pipeline {
     }
     stage('Execute Terraform Apply') {
       steps {
-        sh 'terraform apply -var "prefix=${env.TF_VAR_prefix}" -auto-approve'
+        // Fixing the shell variable substitution
+        sh 'terraform apply -var "prefix=$TF_VAR_prefix" -auto-approve'
       }
     }
   }
